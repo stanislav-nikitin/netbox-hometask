@@ -54,8 +54,8 @@ IP:  10.48.62.252/24
 SW Version:  17.05.01a
 ```
 ## SNMP
-- There were ideas to collect software version by using SNMP & sysDescr OID. 
-- I did not deploy aruba/palo alto devices, but based on searching in the (internet)[https://live.paloaltonetworks.com/t5/general-topics/snmp-oid-s/td-p/14373] Palo Alto do not show software version vis  the output
+- There were ideas to collect software version by using SNMP & sysDescr OID (snmp_module.py)
+- I did not deploy aruba/palo alto devices, but based on searching in the [internet](https://live.paloaltonetworks.com/t5/general-topics/snmp-oid-s/td-p/14373) Palo Alto do not show software version vis  the output
 
 ## Test coverage
 - unit tests cover only connectivity functions at the current version
