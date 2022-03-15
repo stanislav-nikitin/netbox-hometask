@@ -15,13 +15,13 @@ Write an application that would collect information directly from the network de
 The script is using Token Auth for Rest API and pre-defined URL.
 Need to define values at "config.py"
 
-Suppose: 
+### Pre Requirements:
 - IP addresses of the devices are takin from NetBox ("Primary IPv4")
 - "sw_upgrade" customer field has type "Text(long)"
 - SSH is comfigured
 - You can connect by using same pair login/password
 
-Usage example: 
+### Usage example: 
 ```
 supermegaroot% python3.9 sw_info_update.py
 Connection to NETBOX...
