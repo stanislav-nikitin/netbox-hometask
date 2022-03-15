@@ -91,7 +91,13 @@ def get_devices_from_netbox():
     """
 
     api_call = "/api/dcim/devices/?tenant=noc&status=active"
-    return rest_api_get(api_call)["results"]
+    print("Connection to NETBOX...")
+    data = rest_api_get(api_call)
+
+    if data:
+        return data["results"]
+    else:
+        return False
 
 
 def update_sw_version(devices):
@@ -110,35 +116,3 @@ def update_sw_version(devices):
         rest_api_put(api_call, update_data)
 
     return True
-
-
-if __name__ == "__main__":
-
-    data_test = {
-        "name": "noc-akron-rtr01",
-        "device_type": {"id": 6},
-        "device_role": {"id": 1},
-        "tenant": {"id": 14},
-        "site": {"id": 2},
-        "custom_fields": {"sw_version": "17.6.5.1"},
-        "id": 115,
-    }
-    """
-    data_test = {
-        "name": "noc-akron-rtr01",
-        "custom_fields": [{"sw_version": "17.6.1.1"}, {"haha": 123}],
-    }
-    """
-    list = []
-    list.append(data_test)
-    print(list)
-    print(update_sw_version(list))
-    # call1 = "/api/dcim/devices/115/"
-    # print(rest_api_put(call1, data_test))
-
-    call2 = "/api/dcim/devices/?tenant=noc&status=active"
-    dev = rest_api_get(call2)
-
-    print(dev)
-    for d in dev["results"]:
-        print(d["custom_fields"])

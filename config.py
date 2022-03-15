@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Rest API
-token = "321ef4a14021de79150b022976dd7006a7757698"
+token = "84ca7eb944ea0a5842b0c21d316750900641fdc0"
 headers = {"Accept": "application/json", "Authorization": "Token " + token}
 url = "https://demo.netbox.dev"
 

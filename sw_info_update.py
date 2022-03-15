@@ -3,6 +3,7 @@
 import ipaddress
 import getpass
 import re
+import sys
 
 from rest_api_module import *
 from netmiko_module import send_show_command
@@ -25,11 +26,11 @@ def get_device_cred():
     The function return a disctionary {"username": "xxx", "password": "yyy"}
     """
     cred = {}
-    print("#####################################################################\n")
+    print("################################################################\n")
     print("\nPlease input user credentials\n")
     cred["username"] = input("Username: ")
     cred["password"] = getpass.getpass()
-    print("####################################################################\n")
+    print("################################################################\n")
     return cred
 
 
@@ -65,8 +66,6 @@ def get_sw_version_netmiko(devices):
         print("################################################################")
 
         dev_paramset["ip"] = get_ip(d["primary_ip"]["address"])
-        print(dev_paramset)
-
         output = send_show_command(dev_paramset, command)
 
         if output:
@@ -93,10 +92,16 @@ def print_collected_devices_from_netbox(devices):
 
 if __name__ == "__main__":
     d1 = get_devices_from_netbox()
-    print_collected_devices_from_netbox(d1)
 
-    update_sw_version(get_sw_version_netmiko(d1))
-    # get_sw_version(devices)
+    if d1:
+        print_collected_devices_from_netbox(d1)
+        update_sw_version(get_sw_version_netmiko(d1))
+        print("\nSoftware information update succesfull")
+    else:
+        sys.exit("\nError: software information update unsuccessful")
 
     d2 = get_devices_from_netbox()
-    print_collected_devices_from_netbox(d2)
+    if d2:
+        print("################################################################")
+        print("\nSoftware versions after updating attempt:\n")
+        print_collected_devices_from_netbox(d2)
